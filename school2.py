@@ -1,5 +1,7 @@
+from pathlib import Path
 from datetime import datetime
 from time import sleep
+
 from typing import List
 from bs4 import BeautifulSoup
 import requests
@@ -43,9 +45,11 @@ if __name__ == '__main__':
     url = 'https://ru.wikipedia.org/wiki/Категория:Животные_по_алфавиту'
 
     time_now = datetime.utcnow()
+    
+    Path(__file__).parent.joinpath('result').mkdir(parents=True, exist_ok=True)
     link_filename = f'result/{time_now}_links.txt'
     result_filename = f'result/{time_now}_result.txt'
-
+    
     result = {}
     # количество страниц для парсинга, найдено опытным путем
     # если искать - пока есть кнопка Следующая страница, то перейдём на английские имена
